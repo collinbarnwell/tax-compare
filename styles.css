@@ -1,0 +1,88 @@
+html, body {
+      margin: 0px;
+      padding: 0px;
+      font-family: Oswald;
+}
+
+#graph-area {
+    display: flex;
+    position: relative;
+    border-bottom: solid;
+    border-top: dashed;
+    /* height: 200px; */
+    height: 70vh;
+    width: 100%;
+    margin: 10vh 0 0 0;
+    background: #ccffff;
+}
+
+#graph-labels {
+    display: flex;
+    width: 100%;
+    /* height: 100px; */
+    padding-top: 10px;
+}
+
+.graph-label {
+    flex: 1;
+    text-align: center;
+}
+
+.graph-column {
+    position: relative;
+    height: inherit;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.graph-bar {
+    flex-grow: 0;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    text-align: center;
+}
+
+.bar-remainder {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3399ff;
+}
+
+.after-tax {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.side-panel {
+    width: 10%;
+    height: 70vh;
+    display: inline-block;
+    position: absolute;
+    top: 9vh;
+}
+
+#left-panel {
+    left: 0px;
+    text-align: right;
+}
+
+#graph-panel {
+    margin-left:10%;
+    display: inline-block;
+    width: 80%;
+}
+
+.side-amount {
+    height: 10%;
+}
