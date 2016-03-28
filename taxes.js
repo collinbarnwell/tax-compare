@@ -1,14 +1,12 @@
 var GRAPH_HEIGHT;
 var COLORS = ['green', 'red', 'blue', 'yellow', 'cyan'];
-
+var INFO_COLOR = 'grey';
 var INF = 1000000000000000; // one quadrillion
+
 var US_Income = [[.1, 9275], [.15, 37650], [.25, 91150], [.28, 190150],
 	    [.33, 413350], [.35, 415050], [.396, INF]];
 var US_SocialSec = [[.0620, 118500]];
 var US_Medicare = [[.0145, 200000], [.0235, INF]];
-
-var Cal_Income = [];
-
 
 var COUNTRIES = [
   {
@@ -75,6 +73,22 @@ function calcEffectiveRate(income, bracket) {
   return (taxesPaid/income);
 }
 
+function displayCountryInfo(countryName) {
+  var info = $('#info');
+  for (var i = 0; i < COUNTRIES.length; i++) {
+    if (COUNTRIES[i]['name'] != countryName) { continue; }
+    country = COUNTRIES[i];
+
+    info.html('<p>' + country.desc + '</p>');
+    var sources = '<br/><h3>Sources:</h3><ol>';
+    for (var j = 0; j < country.sources.length; j++)
+      sources += '<li><a href="' + country.sources[j] + '">' + country.sources[j] + '</a></li>';
+    sources += '</ol></small>';
+    info.append(sources);
+    return;
+  }
+}
+
 function buildGraph(income) {
   var spacer = '<div class="graph-column"></div>';
   var labelSpacer = '<div class="graph-label"></div>';
@@ -96,20 +110,18 @@ function buildGraph(income) {
       var h = String(Math.floor(effectiveRate * GRAPH_HEIGHT));
 
       graphBarsString += '<div class="graph-bar" style="height:' + h +
-	'px;background:' + COLORS[j] + ';">';
+	'px;background:' + COLORS[j];
       var emHeight =  h / emH;
-      if (emHeight >= 1.0)
-	graphBarsString += '<p>' + country.brackets[j][0] + '</p></div>';
-      else
-	graphBarsString += '</div>';
-
+      if (emHeight < 1.0)
+	graphBarsString += ';font-size:'+ String(h) + 'px';
+      graphBarsString += ';"><p>' + country.brackets[j][0] + '</p></div>';
     }
     graphBarsString += '<div class="bar-remainder"><p>After Tax Income: <br/>' +
       '<span class="after-tax">' + moneyPrint((1-totalEffectiveRate)*income) +
       '</span></div>';
     graph.append('<div class="graph-column">' +  graphBarsString + '</div>');
     graph.append(spacer);
-    labels.append('<div class="graph-label">' + country.name + '</div>');
+    labels.append('<div class="graph-label real-label"><h2>' + country.name + '</h2></div>');
     labels.append(labelSpacer);
   }
 }
@@ -128,4 +140,10 @@ $(document).ready(function() {
   GRAPH_HEIGHT = $('#graph-area').height();
   buildGraph(100000);
   buildScale(100000);
+  $('.real-label').click(function () {
+    $('.real-label').css('background-color', 'white');
+    $(this).css('background-color', 'grey');
+    displayCountryInfo($(this).text());
+  });
+  $('.real-label')[0].click();
 });
