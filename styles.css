@@ -4,6 +4,7 @@ html, body {
       font-family: Oswald;
       color: black;
       background: #e6ffff;
+      font-size: .9em;
 }
 
 a {
@@ -15,7 +16,7 @@ a {
     position: relative;
     border-bottom: solid;
     border-top: dashed;
-    height: 50vh;
+    height: 600px;
     margin-top: .5em;
     width: 100%;
     /* background: ; */
@@ -74,7 +75,7 @@ p {
 }
 
 .side-panel {
-    height: 50vh;
+    height: 600px;
 }
 
 #left-panel {
