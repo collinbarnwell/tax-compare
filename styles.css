@@ -2,6 +2,8 @@ html, body {
       margin: 0px;
       padding: 0px;
       font-family: Oswald;
+      color: black;
+      background: #e6ffff;
 }
 
 #graph-area {
@@ -9,11 +11,10 @@ html, body {
     position: relative;
     border-bottom: solid;
     border-top: dashed;
-    /* height: 200px; */
-    height: 70vh;
+    height: 50vh;
+    margin-top: .5em;
     width: 100%;
-    margin: 10vh 0 0 0;
-    background: #ccffff;
+    /* background: ; */
 }
 
 #graph-labels {
@@ -65,28 +66,23 @@ p {
 
 .after-tax {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 .side-panel {
-    width: 10%;
-    height: 70vh;
-    display: inline-block;
-    position: absolute;
-    top: 9vh;
+    height: 50vh;
 }
 
 #left-panel {
     left: 0px;
     text-align: right;
     z-index:2;
+    flex: 0;
+    min-width: 80px;
 }
 
 #graph-panel {
-    margin-left:10%;
-    display: inline-block;
-    width: 90%;
-    margin-bottom: 0px;
+    flex: 1;
 }
 
 .side-amount {
@@ -94,10 +90,31 @@ p {
 }
 
 #info {
-    margin: 0px;
     padding: 20px;
-    background-color: grey;
+    background-color: #337F86;
     min-height: 400px;
-    position: relative;
-    top: -4px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+h2 {
+    text-align: center;
+}
+
+#graph-container {
+    display: flex;
+}
+
+#slider {
+    width: 100%;
+}
+
+#slider-val {
+    width: 100%;
+    margin: 5px 0;
+    font-size: 3em;
+    text-align: center;
 }

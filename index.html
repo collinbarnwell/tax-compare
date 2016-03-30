@@ -8,8 +8,11 @@
     <meta name="author" content="Collin Barnwell">
 
     <!-- CDN stuff -->
-    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'></link>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css"></link>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"></link>
+
     <!-- Our stylesheets -->
     <link href="styles.css" rel="stylesheet" type="text/css"></link>
     <!-- Our scripts -->
@@ -18,14 +21,21 @@
   </head>
 
   <body>
-    <div id="container">
-      <div id="left-panel" class="side-panel"></div>
-      <div id="graph-panel">
-	<div id="graph-area"></div>
-	<div id="graph-labels"></div>
+    <div id="view">
+      <h1 class="no-flex-zone">Interactive Country Income Tax Explorer</h1>
+      <p class="no-flex-zone">Disclaimer - This is just an approximation; tax credits, refunds, capital gains tax, and many other things are not calculated.  Taxes calculated in USD according to early 2016 exchange rates.</p>
+
+      <div id="slider" class="no-flex-zone"></div>
+      <div id="slider-val" class="no-flex-zone"></div>
+      <div id="graph-container">
+	<div id="left-panel" class="side-panel"></div>
+	<div id="graph-panel">
+	  <div id="graph-area"></div>
+	  <div id="graph-labels"></div>
+	</div>
       </div>
-      <div id="info"></div>
     </div>
+    <div id="info"></div>
     <a name="bottom"></a>
   </body>
 </html>

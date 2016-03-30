@@ -63,7 +63,7 @@ function buildGraph(income) {
     }
     graphBarsString += '<div class="bar-remainder"><p>After Tax Income: <br/>' +
       '<span class="after-tax">' + moneyPrint((1-totalEffectiveRate)*income) +
-      '</span></div>';
+      '</span><br/><small>Taxes paid: ' + moneyPrint(totalEffectiveRate*income) + '</small></div>';
     graph.append('<div class="graph-column">' +  graphBarsString + '</div>');
     graph.append(spacer);
     labels.append('<div class="graph-label real-label"><h2>' + country.name + '</h2></div>');
@@ -81,17 +81,55 @@ function buildScale(income) {
   $('.side-panel').html(scale);
 }
 
-$(document).ready(function() {
-  GRAPH_HEIGHT = $('#graph-area').height();
-  buildGraph(100000);
-  buildScale(100000);
+function logslider(position) {
+  // http://stackoverflow.com/questions/846221/logarithmic-slider
+  // position will be between 0 and 100
+  var minp = 0;
+  var maxp = 500;
+  // The result should be between 100 an 1 000 000 000
+  var minv = Math.log(10000);
+  var maxv = Math.log(1000000001);
+  var scale = (maxv-minv) / (maxp-minp);
+  return Math.exp(minv + scale*(position-minp));
+}
+
+function initLabels() {
   $('.real-label').click(function () {
-    $('.real-label').css('background-color', 'white');
-    $(this).css('background-color', 'grey');
+    $('.real-label').css('background-color', 'inherit');
+    $(this).css('background-color', '#337F86');
     displayCountryInfo($(this).text());
   });
   $('.real-label')[0].click();
   $(".real-label").click(function() {
     $("html, body").animate({ scrollTop: $(document).height() }, "slow");
   });
+}
+
+$(document).ready(function() {
+  var defaultVal = 100;
+  var defaultIncome = logslider(defaultVal);
+  GRAPH_HEIGHT = $('#graph-area').height();
+
+  buildGraph(defaultIncome);
+  buildScale(defaultIncome);
+  initLabels();
+
+  $( "#slider" ).slider({
+    range: "min",
+    value: defaultVal,
+    min: 1,
+    max: 500,
+    slide: function( event, ui ) {
+      var logVal = logslider(ui.value);
+      $( "#slider-val" ).html( moneyPrint(logVal) );
+      $('#graph-area').html('');
+      $('#graph-labels').html('');
+      buildGraph(logVal);
+      buildScale(logVal);
+      initLabels();
+    }
+  });
+
+  var slideVal = $( "#slider" ).slider( "value" );
+  $( "#slider-val" ).html( moneyPrint( logslider(slideVal) ) );
 });

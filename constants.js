@@ -1,12 +1,14 @@
 var GRAPH_HEIGHT;
-var COLORS = ['green', 'red', 'blue', 'yellow', 'cyan'];
-var INFO_COLOR = 'grey';
+// var COLORS = ['green', 'red', 'blue', 'yellow', 'cyan'];
+var COLORS = ['#FF4017', '#12C153', '#FF8417', 'yellow', '#FF2C00', '#00E154', '#FF7800']
+
 var INF = 1000000000000000; // one quadrillion
 
 var US_Income = [[.1, 9275], [.15, 37650], [.25, 91150], [.28, 190150],
 	    [.33, 413350], [.35, 415050], [.396, INF]];
 var US_SocialSec = [[.0620, 118500]];
 var US_Medicare = [[.0145, 200000], [.0235, INF]];
+var US_CA = [[.01, 7582], [.02, 17976], [.04, 28371], [.06, 39384], [.08, 49774], [.093, 254250], [.103, 305100], [.113, 508500], [.123, 1000000], [.133, INF]];
 
 var COUNTRIES = [
   {
@@ -23,11 +25,17 @@ var COUNTRIES = [
       'https://www.ssa.gov/news/press/factsheets/colafacts2016.html'
     ],
   },
-  // {
-  //   'name': 'United States (California - highest income tax)',
-  //   'brackets': [],
-  //   'desc': ['http://taxfoundation.org/article/2016-tax-brackets'],
-  // },
+  {
+    'name': 'United States (California - highest income tax)',
+    'brackets': [
+      ['National Income Tax', US_Income],
+      ['CA Income Tax', US_CA],
+      ['Social Security', US_SocialSec],
+      ['Medicare', US_Medicare],
+    ],
+    'desc': '',
+    'sources': ['http://taxfoundation.org/article/2016-tax-brackets', 'http://www.tax-brackets.org/californiataxtable', 'https://www.ssa.gov/news/press/factsheets/colafacts2016.html'],
+  },
   {
     'name': 'Sweden',
     'brackets': [
