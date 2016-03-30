@@ -94,6 +94,7 @@ p {
     background-color: #337F86;
     min-height: 400px;
     word-wrap:break-word;
+    word-break: break-all;
 }
 
 h1 {
