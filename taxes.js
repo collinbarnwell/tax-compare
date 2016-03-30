@@ -24,12 +24,19 @@ function displayCountryInfo(countryName) {
     if (COUNTRIES[i]['name'] != countryName) { continue; }
     country = COUNTRIES[i];
 
-    info.html('<p>' + country.desc + '</p>');
-    var sources = '<br/><h3>Sources:</h3><ol>';
+    info.html('<h2>Country Info</h2>');
+    info.append(country.desc);
+
+    if (country.mill_p != '')
+      info.append('<p>Population with more than $1M in assets: ' + country.mill_p + '%</p>');
+
+    info.append('<p># of people per billionaire: ' + country.ppb + '</p>');
+    var sources = '<h2>Sources</h2><ol>';
     for (var j = 0; j < country.sources.length; j++)
       sources += '<li><a href="' + country.sources[j] + '">' + country.sources[j] + '</a></li>';
     sources += '</ol></small>';
     info.append(sources);
+    info.append("<h2>Disclaimers and Methodology</h2> <p>It's very hard to find consistent data on wealth levels.  I did the best that I could.<br/>Effective tax rates are an approximation; tax credits, refunds, capital gains tax, and many other things are not calculated.</p><p>Taxes calculated in USD according to early 2016 exchange rates.</p>");
     return;
   }
 }
@@ -70,7 +77,6 @@ function buildGraph(income) {
     labels.append(labelSpacer);
   }
 }
-
 
 function buildScale(income) {
   var scale  = '';

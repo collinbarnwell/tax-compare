@@ -95,9 +95,18 @@ p {
 }
 
 #info {
-    padding: 20px;
+    padding: 20px 40px;;
     background-color: #337F86;
     min-height: 400px;
+}
+
+#info > p, #info > h2 {
+    text-align: left;
+}
+
+#info > h3 {
+    display: inline;
+    clear: none;
 }
 
 h1 {
