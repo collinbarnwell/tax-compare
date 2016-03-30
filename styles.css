@@ -6,6 +6,10 @@ html, body {
       background: #e6ffff;
 }
 
+a {
+    word-wrap: break-word;
+}
+
 #graph-area {
     display: flex;
     position: relative;
@@ -93,8 +97,6 @@ p {
     padding: 20px;
     background-color: #337F86;
     min-height: 400px;
-    word-wrap:break-word;
-    word-break: break-all;
 }
 
 h1 {
