@@ -94,7 +94,7 @@ function logslider(position) {
   var maxp = 500;
   // The result should be between 100 an 1 000 000 000
   var minv = Math.log(10000);
-  var maxv = Math.log(1000000001);
+  var maxv = Math.log(10000001);
   var scale = (maxv-minv) / (maxp-minp);
   return Math.exp(minv + scale*(position-minp));
 }
